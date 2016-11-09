@@ -29,11 +29,11 @@
 (require 'marks)
 ;(require 'python-mode)
 (require 'ido)
-(require 'pc-select)
+;; (require 'pc-select)
 (require 'quick-yes)
-(require 'newshell)
+;; (require 'newshell)
 ;(require 'lua-mode)
-(require 'git)
+;; (require 'git)
 (require 'gitextension)
 (require 'internet-search)
 ;(require 'popwin)
@@ -61,6 +61,7 @@
  '(company-idle-delay 0.05)
  '(compilation-scroll-output t)
  '(custom-enabled-themes (quote (light-blue)))
+ '(delete-selection-mode t)
  '(ecb-source-path (quote (("/" "/"))))
  '(efs-use-passive-mode t)
  '(elpy-default-minor-modes (quote (flymake-mode yas-minor-mode)))
@@ -77,11 +78,12 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (python-mode realgud test-simple loc-changes load-relative yasnippet ac-helm git-gutter diff-hl magit magit-popup git-commit with-editor jedi-direx ac-anaconda flycheck-pyflakes fill-column-indicator python-pylint pylint company-anaconda anaconda-mode pythonic ecb company jedi jedi-core multiple-cursors py-autopep8 pep8 helm-cscope flycheck adaptive-wrap)))
+    (dired+ sr-speedbar multishell pc-mode python-mode realgud test-simple loc-changes load-relative yasnippet ac-helm git-gutter diff-hl magit magit-popup git-commit with-editor jedi-direx ac-anaconda flycheck-pyflakes fill-column-indicator python-pylint pylint company-anaconda anaconda-mode pythonic ecb company jedi jedi-core multiple-cursors py-autopep8 pep8 helm-cscope flycheck adaptive-wrap)))
  '(show-paren-mode t)
+ '(size-indication-mode t)
  '(standard-indent 4)
  '(tool-bar-mode nil)
- '(transient-mark-mode nil)
+ '(transient-mark-mode t)
  '(truncate-lines t)
  '(truncate-partial-width-windows t))
 
@@ -156,11 +158,11 @@
 ;(setq compilation-exit-message-function 'compilation-exit-autoclose)
 ;;; (setq max-lisp-eval-depth 30000)
 
-(defun cygwin-shell ()
-  "Run cygwin bash in shell mode."
-  (interactive)
-  (let ((explicit-shell-file-name "C:/cygwin/bin/bash"))
-    (call-interactively 'shell)))
+;; (defun cygwin-shell ()
+;;   "Run cygwin bash in shell mode."
+;;   (interactive)
+;;   (let ((explicit-shell-file-name "C:/cygwin/bin/bash"))
+;;     (call-interactively 'shell)))
 
 (defun ecb-activated-in-selected-frame ()
   "A hack to use ECB in multiple frames. It first deactivates ECB, then
@@ -226,7 +228,7 @@
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
 
 ;; (pc-select-selection-keys-only t)
-(pc-selection-mode)
+;; (pc-selection-mode)
 (electric-pair-mode)
 (cscope-setup)
 (helm-cscope-mode t)
@@ -290,8 +292,8 @@
 (global-set-key (kbd "C-M-<home>") 'replace-string)
 (global-set-key (kbd "C-M-<insert>") 'query-replace)
 (global-set-key (kbd "<home>") 'back-to-indentation)
-(global-set-key (kbd "C-a") 'beginning-of-line-nomark)
-(global-set-key (kbd "C-x C-a") 'beginning-of-line-mark)
+(global-set-key (kbd "C-a") 'beginning-of-line)
+;; (global-set-key (kbd "C-x C-a") 'beginning-of-line-mark)
 (global-set-key (kbd "C-M-g") 'py-mark-clause)
 (global-set-key (kbd "C-!") 'rename-buffer)
 (global-unset-key (kbd "S-<home>"))
