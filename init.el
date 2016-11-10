@@ -308,15 +308,8 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-find-files)
 
-;; ;(setq py-return-key 'py-newline-and-indent)
-;; (add-hook 'python-mode-hook
-;;        (lambda ()
-;; (add-hook 'python-mode-hook
-;;        (lambda ()
 ;; ;(electric-indent-mode)
-
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
-
 
   ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
   ;; (setq-default fill-column '79)
@@ -326,7 +319,7 @@
 ;;  '(add-to-list 'company-backends 'company-anaconda))
 (global-diff-hl-mode t)
 (add-hook 'python-mode-hook #'hs-minor-mode)
-;; (add-hook 'python-mode-hook 'comment-set-column)
+(add-hook 'python-mode-hook 'comment-set-column)
 (add-hook 'python-mode-hook
           (lambda () (jedi:setup)))
 (setq ac-max-width '0.6)
@@ -348,10 +341,6 @@
 (define-key python-mode-map (kbd "C-<return>") 'newline)
 (define-key python-mode-map (kbd "<return>") 'newline-and-indent)
 
-;; (defun update-ac-sources()
-;;   (setq ac-sources '(ac-source-jedi-direct)))
-;; (add-hook 'python-mode-hook 'update-ac-sources)
-
 (global-set-key (kbd "C-<kp-1>") 'mc/mark-all-in-region)
 (global-set-key (kbd "C-<kp-0>") 'mc/mark-all-like-this)
 
@@ -366,9 +355,9 @@
  '(comint-highlight-input ((t (:foreground "grey70" :bold t))))
  '(company-preview-common ((t (:foreground "red" :underline t :background "#161616"))))
  '(company-scrollbar-bg ((t (:background "gray38"))))
- '(company-scrollbar-fg ((t (:background "coral"))))
+ '(company-scrollbar-fg ((t (:background "HotPink"))))
  '(company-tooltip ((t (:background "gainsboro" :foreground "grey15"))))
- '(company-tooltip-selection ((t (:background "peach puff"))))
+ '(company-tooltip-selection ((t (:background "LightPink"))))
  '(cscope-line-number-face ((t (:foreground "tomato2"))))
  '(cscope-mouse-face ((t (:foreground "grey90" :background "grey25"))))
  '(cscope-separator-face ((t (:foreground "tomato3" :bold t :height 120))))
@@ -382,7 +371,7 @@
  '(ecb-default-highlight-face ((t (:inherit match))))
  '(ecb-directories-general-face ((t (:inherit match))))
  '(ecb-directory-face ((t (:inherit match))))
- '(ecb-tag-header-face ((t (:foreground darkgreen))))
+ '(ecb-tag-header-face ((t (:foreground "darkgreen"))))
  '(font-lock-comment-face ((t (:foreground "gray55"))))
  '(font-lock-doc-string-face ((t (:foreground "cyan"))) t)
  '(font-lock-function-name-face ((t (:foreground "forestgreen" :bold t))))
@@ -396,10 +385,10 @@
  '(fringe ((t (:background "#161616"))))
  '(highlight ((t (:foreground "red3" :background "grey75"))))
  '(hl-line ((t (:background "grey12"))))
- '(isearch ((t (:foreground "firebrick4" :background "cyan3" :bold t))))
  '(lazy-highlight ((t (:foreground "grey70" :background "firebrick4"))))
- '(linum ((t (:foreground "moccasin" :background "grey17"))) t)
+ '(isearch ((t (:foreground "firebrick4" :background "cyan3" :bold t))))
  '(match ((t (:foreground "grey70" :background "firebrick4"))))
+ '(linum ((t (:foreground "moccasin" :background "grey17"))) t)
  '(minibuffer-prompt ((t (:foreground "cyan3" t))))
  '(py-import-from-face ((t (:inherit font-lock-constant-face))))
  '(py-number-face ((t (:foreground "tomato2"))))
