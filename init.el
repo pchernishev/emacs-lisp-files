@@ -17,10 +17,9 @@
 
 (add-to-load-path (expand-file-name "~/.emacs.d/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/"))
-(add-to-load-path (expand-file-name "~/.emacs.d/elpa/ecb-20140215.114/"))
+;; (add-to-load-path (expand-file-name "/usr/share/emacs/site-lisp/git/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/xcscope-20160628.2324/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/async-20160711.2235/"))
-(add-to-load-path (expand-file-name "~/.emacs.d/elpa/helm-20161010.1043/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/helm-cscope-20150609.649/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/adaptive-wrap-0.5/"))
 
@@ -31,7 +30,7 @@
 (require 'ido)
 ;; (require 'pc-select)
 (require 'quick-yes)
-;; (require 'newshell)
+(require 'newshell)
 ;(require 'lua-mode)
 ;; (require 'git)
 (require 'gitextension)
@@ -140,6 +139,10 @@
 ;; (add-hook 'python-mode-hook #'flycheck-python-setup)
 
 ;; Load keys the last, in order to override bad key bindings
+;; (require 'flycheck-pyflakes)
+;; (add-to-list 'flycheck-disabled-checkers 'python-flake8)
+;; (add-to-list 'flycheck-disabled-checkers 'python-pylint)
+;; (add-hook 'python-mode-hook 'flycheck-mode)
 (require 'keys)
 
 
@@ -157,12 +160,6 @@
 ;;; Specify my function (maybe I should have done a lambda function)
 ;(setq compilation-exit-message-function 'compilation-exit-autoclose)
 ;;; (setq max-lisp-eval-depth 30000)
-
-;; (defun cygwin-shell ()
-;;   "Run cygwin bash in shell mode."
-;;   (interactive)
-;;   (let ((explicit-shell-file-name "C:/cygwin/bin/bash"))
-;;     (call-interactively 'shell)))
 
 (defun ecb-activated-in-selected-frame ()
   "A hack to use ECB in multiple frames. It first deactivates ECB, then
@@ -304,9 +301,13 @@
 (global-set-key (kbd "C-x B") 'list-buffers)
 (global-set-key (kbd "C-o") 'occur)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-M-x") 'execute-extended-command)
+(global-set-key (kbd "M-X") 'execute-extended-command)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-find-files)
+(global-set-key (kbd "C-n") 'diff-hl-next-hunk)
+(global-set-key (kbd "C-p") 'diff-hl-previous-hunk)
+(global-set-key (kbd "C-c R") 'diff-hl-revert-hunk)
+
 
 ;; ;(electric-indent-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
@@ -350,7 +351,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit default :stipple nil :background "#161616" :foreground "lightGrey" :family "Consolas"))))
+ '(default ((t (:background "#161616" :foreground "lightGrey" :weight normal :height 100 :width normal :family "Consolas"))))
  '(border ((t (:height 1.0 :width normal))))
  '(comint-highlight-input ((t (:foreground "grey70" :bold t))))
  '(company-preview-common ((t (:foreground "red" :underline t :background "#161616"))))
@@ -371,7 +372,7 @@
  '(ecb-default-highlight-face ((t (:inherit match))))
  '(ecb-directories-general-face ((t (:inherit match))))
  '(ecb-directory-face ((t (:inherit match))))
- '(ecb-tag-header-face ((t (:foreground "darkgreen"))))
+ '(ecb-tag-header-face ((t (:background "firebrick4"))))
  '(font-lock-comment-face ((t (:foreground "gray55"))))
  '(font-lock-doc-string-face ((t (:foreground "cyan"))) t)
  '(font-lock-function-name-face ((t (:foreground "forestgreen" :bold t))))
