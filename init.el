@@ -17,7 +17,6 @@
 
 (add-to-load-path (expand-file-name "~/.emacs.d/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/"))
-;; (add-to-load-path (expand-file-name "/usr/share/emacs/site-lisp/git/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/xcscope-20160628.2324/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/async-20160711.2235/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/helm-cscope-20150609.649/"))
@@ -309,7 +308,6 @@
 (global-set-key (kbd "C-c R") 'diff-hl-revert-hunk)
 
 
-;; ;(electric-indent-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 
   ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
@@ -386,10 +384,10 @@
  '(fringe ((t (:background "#161616"))))
  '(highlight ((t (:foreground "red3" :background "grey75"))))
  '(hl-line ((t (:background "grey12"))))
- '(lazy-highlight ((t (:foreground "grey70" :background "firebrick4"))))
  '(isearch ((t (:foreground "firebrick4" :background "cyan3" :bold t))))
- '(match ((t (:foreground "grey70" :background "firebrick4"))))
+ '(lazy-highlight ((t (:foreground "grey70" :background "firebrick4"))))
  '(linum ((t (:foreground "moccasin" :background "grey17"))) t)
+ '(match ((t (:foreground "grey70" :background "firebrick4"))))
  '(minibuffer-prompt ((t (:foreground "cyan3" t))))
  '(py-import-from-face ((t (:inherit font-lock-constant-face))))
  '(py-number-face ((t (:foreground "tomato2"))))
