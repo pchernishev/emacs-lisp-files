@@ -60,6 +60,7 @@
  '(compilation-scroll-output t)
  '(custom-enabled-themes (quote (light-blue)))
  '(delete-selection-mode t)
+ '(desktop-save-mode t)
  '(ecb-source-path (quote (("/" "/"))))
  '(efs-use-passive-mode t)
  '(elpy-default-minor-modes (quote (flymake-mode yas-minor-mode)))
@@ -85,15 +86,15 @@
  '(truncate-lines t)
  '(truncate-partial-width-windows t))
 
-;; Let's use CYGWIN bash...
-;;
-;; (setq binary-process-input t)
-;; (setq w32-quote-process-args ?\")
-(setq shell-file-name "bash") ;; or sh if you rename your bash executable to sh.
-(setenv "SHELL" shell-file-name)
-(setq explicit-shell-file-name shell-file-name)
-(setq explicit-sh-args '("-login" "-i"))
-;; (setq explicit-bash-args '("--noediting" "-i"))
+;; ;; Let's use CYGWIN bash...
+;; ;;
+;; ;; (setq binary-process-input t)
+;; ;; (setq w32-quote-process-args ?\")
+;; (setq shell-file-name "bash") ;; or sh if you rename your bash executable to sh.
+;; (setenv "SHELL" shell-file-name)
+;; (setq explicit-shell-file-name shell-file-name)
+;; (setq explicit-sh-args '("-login" "-i"))
+;; ;; (setq explicit-bash-args '("--noediting" "-i"))
 
 (global-visual-line-mode)
 (add-hook 'visual-line-mode-hook 'adaptive-wrap-prefix-mode)
@@ -288,8 +289,12 @@
 (global-set-key (kbd "C-M-<home>") 'replace-string)
 (global-set-key (kbd "C-M-<insert>") 'query-replace)
 (global-set-key (kbd "<home>") 'back-to-indentation)
-(global-set-key (kbd "C-a") 'beginning-of-line)
+(global-set-key (kbd "<end>") 'end-of-line)
 ;; (global-set-key (kbd "C-x C-a") 'beginning-of-line-mark)
+(global-set-key (kbd "C-c <home>") 'beginning-of-visual-line)
+(global-set-key (kbd "C-c <end>") 'end-of-visual-line)
+(global-set-key (kbd "C-a") 'beginning-of-line)
+
 (global-set-key (kbd "C-M-g") 'py-mark-clause)
 (global-set-key (kbd "C-!") 'rename-buffer)
 (global-unset-key (kbd "S-<home>"))
@@ -301,6 +306,7 @@
 (global-set-key (kbd "C-o") 'occur)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-X") 'execute-extended-command)
+(global-set-key (kbd "C-=") 'helm-semantic)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-find-files)
 (global-set-key (kbd "C-n") 'diff-hl-next-hunk)
