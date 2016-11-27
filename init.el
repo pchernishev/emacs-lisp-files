@@ -392,7 +392,7 @@
  '(hl-line ((t (:background "grey12"))))
  '(isearch ((t (:foreground "firebrick4" :background "cyan3" :bold t))))
  '(lazy-highlight ((t (:foreground "grey70" :background "firebrick4"))))
- '(linum ((t (:foreground "moccasin" :background "grey17"))) t)
+ '(linum ((t (:foreground "YellowGreen" :background "grey14"))) t)
  '(match ((t (:foreground "grey70" :background "firebrick4"))))
  '(minibuffer-prompt ((t (:foreground "cyan3" t))))
  '(py-import-from-face ((t (:inherit font-lock-constant-face))))
