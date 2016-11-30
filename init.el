@@ -239,9 +239,32 @@
 (menu-bar-mode -1)
 
 (setq ido-default-buffer-method 'selected-window)
-;; Set key bindings
-;(eval-after-load "helm-cscope"
-;  '(progn
+
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
+
+  ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
+  ;; (setq-default fill-column '79)
+  ;; (add-hook 'python-mode-hook 'eldoc-mode)
+  ;; (add-hook 'after-init-hook 'global-company-mode)
+  ;; (eval-after-load "company"
+;;  '(add-to-list 'company-backends 'company-anaconda))
+(global-diff-hl-mode t)
+(add-hook 'python-mode-hook 'hs-minor-mode)
+(add-hook 'python-mode-hook 'comment-set-column)
+(add-hook 'python-mode-hook
+          (lambda () (jedi:setup)))
+(setq ac-max-width '0.6)
+;; (defun update-ac-sources()
+;;   (setq ac-sources '(ac-source-jedi-direct)))
+;; (add-hook 'python-mode-hook 'update-ac-sources)
+;; (add-hook 'python-mode-hook
+;;           (lambda () (anaconda-mode)))
+;; (add-hook 'python-mode-hook
+;;           (lambda () (ac-anaconda-setup)))
+(setq jedi:complete-on-dot t)
+(setq jedi:get-in-function-call-delay nil)
+(setq jedi:tooltip-method '(popup))
+
 (global-set-key (kbd "C-(") 'forward-or-backward-sexp)
 (global-set-key (kbd "C-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-s d") 'helm-cscope-find-global-definition)
@@ -264,22 +287,19 @@
 (global-set-key (kbd "M-s M-i") 'cscope-find-files-including-file)
 (global-set-key (kbd "M-s q") 'helm-cscope-pop-mark)
 (global-set-key (kbd "M-s M-q") 'cscope-pop-mark)
-;))
 
 (global-set-key (kbd "C-M-<prior>") 'move-line-region-up)
 (global-set-key (kbd "C-M-<next>") 'move-line-region-down)
 
-(global-set-key (kbd "C-c C-o") 'helm-occur-from-isearch)
-(global-set-key (kbd "C-c o") 'helm-occur)
-(global-set-key (kbd "C-c C-g") 'helm-grep-do-git-grep)
 (global-set-key (kbd "C-x r c") 'copy-rectangle-as-kill)
 (global-set-key (kbd "C-x r e") 'string-insert-rectangle)
 (global-set-key (kbd "C-x r C") 'clear-rectangle)
-(global-set-key (kbd "C-M-z") 'pop-global-mark)
+
 (global-set-key (kbd "C-\"") 'py-shift-block-left)
 (global-set-key (kbd "C-|") 'py-shift-block-right)
 (global-set-key (kbd "C-{") 'py-beginning-of-class)
 (global-set-key (kbd "C-}") 'py-end-of-class)
+(global-set-key (kbd "C-M-g") 'py-mark-clause)
 
 (global-set-key (kbd "C-$") 'shrink-window)
 (global-set-key (kbd "C-%") 'enlarge-window)
@@ -294,60 +314,48 @@
 (global-set-key (kbd "C-c <home>") 'beginning-of-visual-line)
 (global-set-key (kbd "C-c <end>") 'end-of-visual-line)
 (global-set-key (kbd "C-a") 'beginning-of-line)
+;; (global-unset-key (kbd "S-<home>"))
 
-(global-set-key (kbd "C-M-g") 'py-mark-clause)
+
 (global-set-key (kbd "C-!") 'rename-buffer)
-(global-unset-key (kbd "S-<home>"))
-
 (global-set-key (kbd "M-<right>") 'previous-buffer)
 (global-set-key (kbd "M-<left>") 'next-buffer)
-
 (global-set-key (kbd "C-x B") 'list-buffers)
+
+(global-set-key (kbd "C-M-z") 'pop-global-mark)
 (global-set-key (kbd "C-o") 'occur)
-(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-X") 'execute-extended-command)
+(global-set-key (kbd "C-r") 'isearch-backward)
+
+(global-set-key (kbd "M-<f12>") 'toggle-frame-fullscreen)
+(global-set-key (kbd "M-<f11>") 'toggle-frame-maximized)
+(global-set-key (kbd "M-<f10>") 'maximize-window)
+(global-set-key (kbd "M-<f9>") 'minimize-window)
+(global-set-key (kbd "M-<f7>") 'balance-windows)
+
+(global-set-key (kbd "C-c C-o") 'helm-occur-from-isearch)
+(global-set-key (kbd "C-c o") 'helm-occur)
+(global-set-key (kbd "C-c C-g") 'helm-grep-do-git-grep)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-=") 'helm-semantic)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x f") 'helm-find-files)
+
 (global-set-key (kbd "C-n") 'diff-hl-next-hunk)
 (global-set-key (kbd "C-p") 'diff-hl-previous-hunk)
 (global-set-key (kbd "C-c R") 'diff-hl-revert-hunk)
 
+(global-set-key (kbd "C-<kp-1>") 'mc/mark-all-in-region)
+(global-set-key (kbd "C-<kp-0>") 'mc/mark-all-like-this)
 
-(add-hook 'emacs-lisp-mode-hook 'company-mode)
 
-  ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
-  ;; (setq-default fill-column '79)
-  ;; (add-hook 'python-mode-hook 'eldoc-mode)
-  ;; (add-hook 'after-init-hook 'global-company-mode)
-  ;; (eval-after-load "company"
-;;  '(add-to-list 'company-backends 'company-anaconda))
-(global-diff-hl-mode t)
-(add-hook 'python-mode-hook #'hs-minor-mode)
-(add-hook 'python-mode-hook 'comment-set-column)
-(add-hook 'python-mode-hook
-          (lambda () (jedi:setup)))
-(setq ac-max-width '0.6)
-;; (defun update-ac-sources()
-;;   (setq ac-sources '(ac-source-jedi-direct)))
-;; (add-hook 'python-mode-hook 'update-ac-sources)
-;; (add-hook 'python-mode-hook
-;;           (lambda () (anaconda-mode)))
-;; (add-hook 'python-mode-hook
-;;           (lambda () (ac-anaconda-setup)))
-
-(setq jedi:complete-on-dot t)
-(setq jedi:get-in-function-call-delay nil)
-(setq jedi:tooltip-method '(popup))
 (define-key python-mode-map (kbd "C-c c") 'jedi:complete)
 (define-key python-mode-map (kbd "C-c n") 'jedi:goto-definition-next)
 (define-key python-mode-map (kbd "C-c m") 'jedi:goto-definition-pop-marker)
 (define-key python-mode-map (kbd "C-c f") 'jedi:get-in-function-call)
-(define-key python-mode-map (kbd "C-<return>") 'newline)
+(define-key python-mode-map (kbd "C-M-<return>") 'newline)
 (define-key python-mode-map (kbd "<return>") 'newline-and-indent)
-
-(global-set-key (kbd "C-<kp-1>") 'mc/mark-all-in-region)
-(global-set-key (kbd "C-<kp-0>") 'mc/mark-all-like-this)
+(define-key python-mode-map (kbd "C-<return>") 'py-newline-and-dedent)
 
 ;; Custom-set-faces was added by Custom.
 (custom-set-faces
@@ -399,7 +407,8 @@
  '(py-number-face ((t (:foreground "tomato2"))))
  '(py-object-reference-face ((t (:inherit font-lock-variable-name-face))))
  '(region ((t (:background "grey20"))))
- '(speedbar-highlight-face ((t (:inherit highlight)))))
+ '(speedbar-highlight-face ((t (:inherit highlight))))
+)
 
 (provide 'init)
 ;;; init ends here
