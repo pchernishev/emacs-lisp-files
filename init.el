@@ -239,9 +239,8 @@
 (menu-bar-mode -1)
 
 (setq ido-default-buffer-method 'selected-window)
-
+(put 'narrow-to-region 'disabled nil)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
-
   ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
   ;; (setq-default fill-column '79)
   ;; (add-hook 'python-mode-hook 'eldoc-mode)
