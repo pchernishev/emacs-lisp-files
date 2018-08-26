@@ -17,6 +17,7 @@
 
 (add-to-load-path (expand-file-name "~/.emacs.d/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/"))
+;; (add-to-load-path (expand-file-name "/usr/share/emacs/site-lisp/git/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/xcscope-20160628.2324/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/async-20160711.2235/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/helm-cscope-20150609.649/"))
@@ -60,6 +61,7 @@
  '(compilation-scroll-output t)
  '(custom-enabled-themes (quote (light-blue)))
  '(delete-selection-mode t)
+ '(desktop-auto-save-timeout 60)
  '(desktop-save-mode t)
  '(ecb-source-path (quote (("/" "/"))))
  '(efs-use-passive-mode t)
@@ -114,7 +116,7 @@
 
 ;; (setq-default left-margin-width '0)
 ;; (setq-default right-margin-width '0)
-;; (setq-default left-fringe-width '0)
+(setq  left-fringe-width '2)
 ;; (setq-default right-fringe-width '0)
 
 (package-initialize)
@@ -239,8 +241,9 @@
 (menu-bar-mode -1)
 
 (setq ido-default-buffer-method 'selected-window)
-(put 'narrow-to-region 'disabled nil)
+
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
+
   ;; (add-hook 'python-mode-hook 'turn-on-fci-mode)
   ;; (setq-default fill-column '79)
   ;; (add-hook 'python-mode-hook 'eldoc-mode)
@@ -248,6 +251,7 @@
   ;; (eval-after-load "company"
 ;;  '(add-to-list 'company-backends 'company-anaconda))
 (global-diff-hl-mode t)
+(diff-hl-margin-mode t)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'comment-set-column)
 (add-hook 'python-mode-hook
@@ -344,8 +348,8 @@
 (global-set-key (kbd "C-p") 'diff-hl-previous-hunk)
 (global-set-key (kbd "C-c R") 'diff-hl-revert-hunk)
 
-(global-set-key (kbd "C-<kp-1>") 'mc/mark-all-in-region)
-(global-set-key (kbd "C-<kp-0>") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c 1") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c 2") 'mc/mark-all-in-region)
 
 
 (define-key python-mode-map (kbd "C-c c") 'jedi:complete)
@@ -356,13 +360,27 @@
 (define-key python-mode-map (kbd "<return>") 'newline-and-indent)
 (define-key python-mode-map (kbd "C-<return>") 'py-newline-and-dedent)
 
+(defmacro defkbalias (old new)
+  `(define-key (current-global-map) ,new
+     (lookup-key (current-global-map) ,old)))
+
+(defkbalias (kbd "C-S-<backspace>") (kbd "C-x p c b"))
+(defkbalias (kbd "C-/") (kbd "C-x p c s"))
+(defkbalias (kbd "C-2") (kbd "C-x p c 2"))
+(defkbalias (kbd "C-3") (kbd "C-x p c 3"))
+(defkbalias (kbd "<pause>") (kbd "C-x p c p"))
+(defkbalias (kbd "C-\"") (kbd "C-x p c l"))
+(defkbalias (kbd "C-|") (kbd "C-x p c r"))
+(defkbalias (kbd "C-{") (kbd "C-x p c 4"))
+(defkbalias (kbd "C-}") (kbd "C-x p c 5"))
+
 ;; Custom-set-faces was added by Custom.
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#161616" :foreground "lightGrey" :weight normal :height 100 :width normal :family "Consolas"))))
+ '(default ((t (:background "#161616" :foreground "lightGrey" :weight normal :width normal :slant normal :family "Dejavu Sans Mono" :height 100))))
  '(border ((t (:height 1.0 :width normal))))
  '(comint-highlight-input ((t (:foreground "grey70" :bold t))))
  '(company-preview-common ((t (:foreground "red" :underline t :background "#161616"))))
@@ -372,13 +390,30 @@
  '(company-tooltip-selection ((t (:background "LightPink"))))
  '(cscope-line-number-face ((t (:foreground "tomato2"))))
  '(cscope-mouse-face ((t (:foreground "grey90" :background "grey25"))))
- '(cscope-separator-face ((t (:foreground "tomato3" :bold t :height 120))))
+ '(cscope-separator-face ((t (:foreground "red3" :bold t :height 100))))
  '(cursor ((t (:foreground "grey5" :background "red2"))))
  '(custom-button-face ((t (:bold t :foreground "#3fdfcf"))) t)
  '(custom-group-tag-face ((t (:underline t :foreground "blue"))) t)
  '(custom-saved-face ((t (:underline t :foreground "orange"))) t)
  '(custom-state-face ((t (:foreground "green3"))) t)
  '(custom-variable-button-face ((t (:bold t :underline t :foreground "white"))) t)
+ '(diff-added ((t (:background "#005f00"))))
+ '(diff-removed ((t (:background "red4"))))
+ '(diff-refine-added ((t (:background "green4"))))
+ '(diff-refine-removed ((t (:background "red2"))))
+ '(ediff-current-diff-B ((t (:background "#005f00"))))
+ '(ediff-current-diff-A ((t (:background "red4"))))
+ '(ediff-odd-diff-B ((t (:background "#3a3a3a"))))
+ '(ediff-even-diff-C ((t (:background "#3a3a3a"))))
+ '(ediff-even-diff-A ((t (:background "#3a3a3a"))))
+ '(ediff-even-diff-Ancestor ((t (:background "#3a3a3a"))))
+ '(ediff-odd-diff-B ((t (:background "#3a3a3a"))))
+ '(ediff-odd-diff-C ((t (:background "#3a3a3a"))))
+ '(ediff-even-diff-B ((t (:background "#3a3a3a"))))
+ '(ediff-odd-diff-A ((t (:background "#3a3a3a"))))
+ '(diff-hl-insert ((t (:background "green4" :foreground "green4"))))
+ '(diff-hl-delete ((t (:background "red2" :foreground "red2"))))
+ '(diff-hl-change ((t (:background "#0000ff" :foreground "#0000ff"))))
  '(ecb-analyse-face ((t (:foreground "grey70" :background "firebrick4" :bold t))))
  '(ecb-default-highlight-face ((t (:inherit match))))
  '(ecb-directories-general-face ((t (:inherit match))))
@@ -396,7 +431,7 @@
  '(font-lock-warning-face ((t (:foreground "yellow" :bold t))))
  '(fringe ((t (:background "#161616"))))
  '(highlight ((t (:foreground "red3" :background "grey75"))))
- '(hl-line ((t (:background "grey15"))))
+ '(hl-line ((t (:background "grey14"))))
  '(isearch ((t (:foreground "firebrick4" :background "cyan3" :bold t))))
  '(lazy-highlight ((t (:foreground "grey70" :background "firebrick4"))))
  '(linum ((t (:foreground "YellowGreen" :background "grey14"))) t)
@@ -405,13 +440,10 @@
  '(py-import-from-face ((t (:inherit font-lock-constant-face))))
  '(py-number-face ((t (:foreground "tomato2"))))
  '(py-object-reference-face ((t (:inherit font-lock-variable-name-face))))
- '(region ((t (:background "grey20"))))
- '(speedbar-highlight-face ((t (:inherit highlight))))
- '(diff-added-face ((t (:background "#335533"))))
- '(diff-removed-face ((t (:background "#553333"))))
- '(diff-refine-removed ((t (:foreground "FF0000" :background "#553333"))))
- '(diff-refine-added ((t (:foreground "#00FF00" :background "#335533"))))
-)
+ '(region ((t (:background "grey21"))))
+ '(helm-selection ((t (:background "grey21"))))
+ '(speedbar-highlight-face ((t (:inherit highlight)))))
 
 (provide 'init)
 ;;; init ends here
+(put 'narrow-to-region 'disabled nil)
