@@ -19,7 +19,7 @@
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/"))
 ;; (add-to-load-path (expand-file-name "/usr/share/emacs/site-lisp/git/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/xcscope-20160628.2324/"))
-(add-to-load-path (expand-file-name "~/.emacs.d/elpa/async-20160711.2235/"))
+(add-to-load-path (expand-file-name "~/.emacs.d/elpa/async-20170804.2158/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/helm-cscope-20150609.649/"))
 (add-to-load-path (expand-file-name "~/.emacs.d/elpa/adaptive-wrap-0.5/"))
 
@@ -61,8 +61,8 @@
  '(compilation-scroll-output t)
  '(custom-enabled-themes (quote (light-blue)))
  '(delete-selection-mode t)
- '(desktop-auto-save-timeout 60)
  '(desktop-save-mode t)
+ '(desktop-auto-save-timeout 60)
  '(ecb-source-path (quote (("/" "/"))))
  '(efs-use-passive-mode t)
  '(elpy-default-minor-modes (quote (flymake-mode yas-minor-mode)))
@@ -116,8 +116,9 @@
 
 ;; (setq-default left-margin-width '0)
 ;; (setq-default right-margin-width '0)
-(setq  left-fringe-width '2)
+;; (setq-default left-fringe-width '0)
 ;; (setq-default right-fringe-width '0)
+;; (setq  left-fringe-width '2)
 
 (package-initialize)
 ;(elpy-enable)
@@ -228,6 +229,7 @@
 
 ;; (pc-select-selection-keys-only t)
 ;; (pc-selection-mode)
+;; (desktop-auto-save-enable)
 (electric-pair-mode)
 (cscope-setup)
 (helm-cscope-mode t)
@@ -347,6 +349,11 @@
 (global-set-key (kbd "C-n") 'diff-hl-next-hunk)
 (global-set-key (kbd "C-p") 'diff-hl-previous-hunk)
 (global-set-key (kbd "C-c R") 'diff-hl-revert-hunk)
+(global-set-key (kbd "C-c C-b") 'vc-revert-buffer)
+
+(global-set-key (kbd "C-c d c") 'desktop-change-dir)
+(global-set-key (kbd "C-c d s") 'desktop-save-in-desktop-dir)
+(global-set-key (kbd "C-c d C") 'desktop-clear)
 
 (global-set-key (kbd "C-c 1") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c 2") 'mc/mark-all-in-region)
@@ -359,6 +366,7 @@
 (define-key python-mode-map (kbd "C-M-<return>") 'newline)
 (define-key python-mode-map (kbd "<return>") 'newline-and-indent)
 (define-key python-mode-map (kbd "C-<return>") 'py-newline-and-dedent)
+
 
 (defmacro defkbalias (old new)
   `(define-key (current-global-map) ,new
@@ -444,7 +452,7 @@
  '(py-number-face ((t (:foreground "tomato2"))))
  '(py-object-reference-face ((t (:inherit font-lock-variable-name-face))))
  '(region ((t (:background "grey21"))))
- '(speedbar-highlight-face ((t (:inherit highlight)))))
+ '(speedbar-highlight-face ((t (:inherit highlight))))
 )
 
 (provide 'init)
