@@ -452,8 +452,8 @@
  '(py-number-face ((t (:foreground "tomato2"))))
  '(py-object-reference-face ((t (:inherit font-lock-variable-name-face))))
  '(region ((t (:background "grey21"))))
- '(speedbar-highlight-face ((t (:inherit highlight))))
-)
+ '(helm-selection ((t (:background "grey21"))))
+ '(speedbar-highlight-face ((t (:inherit highlight)))))
 
 (provide 'init)
 ;;; init ends here
