@@ -253,7 +253,7 @@
   ;; (eval-after-load "company"
 ;;  '(add-to-list 'company-backends 'company-anaconda))
 (global-diff-hl-mode t)
-;; (diff-hl-margin-mode t)
+(diff-hl-margin-mode t)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'comment-set-column)
 (add-hook 'python-mode-hook
